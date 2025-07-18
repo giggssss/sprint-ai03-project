@@ -1,0 +1,13 @@
+*.png
+*.txt
+*.json
+*.jpg
+*.jpeg
+*.yaml
+*.mp4
+*.yaml
+*.csv
+*.zip
+*.pt
+*.pth
+.DS_Store
