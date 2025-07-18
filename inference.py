@@ -5,16 +5,6 @@ from model import YOLO11, YoloDataset, YoloLoss
 
 
 def inference(model, image_path, device, conf_threshold=0.5):
-    """
-    Run inference on a single image.
-    Args:
-        model: PyTorch detection model
-        image_path (str): Path to input image
-        device: torch.device
-        conf_threshold (float): Confidence threshold to filter boxes
-    Returns:
-        List of detected boxes dict with keys 'class', 'confidence', 'bbox'
-    """
     model.eval()
     transform = T.Compose([T.Resize((224, 224)), T.ToTensor()])
     img = Image.open(image_path).convert('RGB')
@@ -33,7 +23,6 @@ def inference(model, image_path, device, conf_threshold=0.5):
                     'bbox': [float(x), float(y), float(w), float(h)]
                 })
     return boxes
-
 
 if __name__ == "__main__":
     import argparse

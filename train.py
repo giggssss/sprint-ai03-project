@@ -1,6 +1,5 @@
 import torch
 
-
 def train(model, dataloader, optimizer, criterion, device):
     """
     Train the model for one epoch.
