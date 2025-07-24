@@ -52,4 +52,5 @@ def train_ultralytics(model, args, device):
         data=os.path.join(args.data_dir, 'data.yaml'), epochs=args.num_epochs,
         imgsz=224, batch=args.batch_size, device=device
     )
+    model.save("ultralytics_yolo_model.pt")
     print("Ultralytics YOLO training completed.")

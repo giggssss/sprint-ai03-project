@@ -1,4 +1,5 @@
 import torch
+from tqdm import tqdm
 
 def train(model, dataloader, optimizer, criterion, device):
     """
@@ -14,7 +15,7 @@ def train(model, dataloader, optimizer, criterion, device):
     """
     model.train()
     total_loss = 0
-    for imgs, targets in dataloader:
+    for imgs, targets in tqdm(dataloader, desc="Training", leave=False):
         imgs = imgs.to(device)
         targets = targets.to(device)
         preds = model(imgs)

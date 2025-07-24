@@ -27,8 +27,8 @@ def inference(model, image_path, device, conf_threshold=0.5):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="YOLO inference")
-    parser.add_argument('model_path', type=str, help='Path to saved model checkpoint')
-    parser.add_argument('image_path', type=str, help='Path to image to infer')
+    parser.add_argument('--model_path', type=str, help='Path to saved model checkpoint')
+    parser.add_argument('--image_path', type=str, help='Path to image to infer')
     parser.add_argument('--device', type=str, default=None, help='device string, e.g., cuda, mps, cpu')
     parser.add_argument('--threshold', type=float, default=0.5, help='confidence threshold')
     args = parser.parse_args()
