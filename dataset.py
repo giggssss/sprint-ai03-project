@@ -196,14 +196,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # example usage
-    convert_coco_to_yolo(os.path.join(args.dataset_root, "ai03-level1-project/train_images"), 
-                         os.path.join(args.dataset_root, "ai03-level1-project/train_annotations"),
-                         os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/images"), 
-                         os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/labels"))
-    prepare_yolo_structure(os.path.join(args.dataset_root, "ai03-level1-project/yolo_data"),
-                           os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/images"),
-                           os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/labels"),
-                           ann_dir=os.path.join(args.dataset_root, "ai03-level1-project/train_annotations"),
+    convert_coco_to_yolo(os.path.join(args.dataset_root, "train_images"), 
+                         os.path.join(args.dataset_root, "train_annotations"),
+                         os.path.join(args.dataset_root, "yolo_tmp/images"), 
+                         os.path.join(args.dataset_root, "yolo_tmp/labels"))
+    prepare_yolo_structure(os.path.join(args.dataset_root, "yolo_data"),
+                           os.path.join(args.dataset_root, "yolo_tmp/images"),
+                           os.path.join(args.dataset_root, "yolo_tmp/labels"),
+                           ann_dir=os.path.join(args.dataset_root, "train_annotations"),
                            train_ratio=0.8, 
                            yaml_file="data.yaml")
     
