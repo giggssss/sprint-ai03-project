@@ -1,6 +1,7 @@
 import os
 import json
 import glob
+import argparse
 
 def count_files_and_check_matching(base_dir):
     # Detect dataset splits by folder pattern: *_images and corresponding *_annotations
@@ -52,7 +53,10 @@ def count_files_and_check_matching(base_dir):
     return results
 
 if __name__ == "__main__":
-    base_path = '/Volumes/Macintosh SUB/Dataset/ai03-level1-project'
+    parser = argparse.ArgumentParser(description="Check dataset image/annotation matching.")
+    parser.add_argument("--base_path", type=str, default="/Volumes/Macintosh SUB/Dataset/ai03-level1-project", help="Base dataset directory path")
+    args = parser.parse_args()
+    base_path = args.base_path
     stats = count_files_and_check_matching(base_path)
     for split, info in stats.items():
         # Save the results to a JSON file for each split

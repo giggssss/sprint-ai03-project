@@ -4,8 +4,9 @@ import shutil
 import random
 import json
 import yaml
-
+import argparse
 import torch
+
 from torch.utils.data import DataLoader, Dataset
 from torchvision.transforms import v2 as T
 from torchvision.transforms import functional as TF
@@ -190,14 +191,19 @@ def prepare_yolo_structure(root, img_src, lbl_src, ann_dir=None, train_ratio=0.8
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="COCO to YOLO conversion and structure preparation")
+    parser.add_argument("--dataset_root", type=str, required=True, help="Root directory of the dataset (e.g., /Volumes/Macintosh SUB/Dataset/ai03-level1-project)")
+    args = parser.parse_args()
+
     # example usage
-    convert_coco_to_yolo("/Volumes/Macintosh SUB/Dataset/ai03-level1-project/train_images", 
-                         "/Volumes/Macintosh SUB/Dataset/ai03-level1-project/train_annotations",
-                         "/Volumes/Macintosh SUB/Dataset/ai03-level1-project/yolo_tmp/images", 
-                         "/Volumes/Macintosh SUB/Dataset/ai03-level1-project/yolo_tmp/labels")
-    prepare_yolo_structure("/Volumes/Macintosh SUB/Dataset/ai03-level1-project/yolo_data",
-                           "/Volumes/Macintosh SUB/Dataset/ai03-level1-project/yolo_tmp/images", 
-                           "/Volumes/Macintosh SUB/Dataset/ai03-level1-project/yolo_tmp/labels", 
-                           ann_dir="/Volumes/Macintosh SUB/Dataset/ai03-level1-project/train_annotations",
+    convert_coco_to_yolo(os.path.join(args.dataset_root, "ai03-level1-project/train_images"), 
+                         os.path.join(args.dataset_root, "ai03-level1-project/train_annotations"),
+                         os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/images"), 
+                         os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/labels"))
+    prepare_yolo_structure(os.path.join(args.dataset_root, "ai03-level1-project/yolo_data"),
+                           os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/images"),
+                           os.path.join(args.dataset_root, "ai03-level1-project/yolo_tmp/labels"),
+                           ann_dir=os.path.join(args.dataset_root, "ai03-level1-project/train_annotations"),
                            train_ratio=0.8, 
                            yaml_file="data.yaml")
+    
