@@ -183,8 +183,8 @@ def prepare_yolo_structure(root, img_src, lbl_src, ann_dir=None, train_ratio=0.8
         names = [str(n) for n in names]
     nc = len(names)
     data = {"path": root,
-            "train": os.path.join(root, "train/images"),
-            "val": os.path.join(root, "val/images"),
+            "train": "train/images",
+            "val": "val/images",
             "nc": nc, "names": names}
     with open(yaml_file, "w", encoding="utf-8") as f:
         yaml.dump(data, f, sort_keys=False, allow_unicode=True)
