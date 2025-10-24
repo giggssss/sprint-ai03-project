@@ -12,3 +12,8 @@
 *.pth
 .DS_Store
 *.pyc
+__pycache__/
+env/
+venv/
+.idea/
+.vscode/
